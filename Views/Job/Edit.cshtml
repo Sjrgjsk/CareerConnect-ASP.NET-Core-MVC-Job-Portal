@@ -1,0 +1,62 @@
+﻿@model CareerConnect.Models.Job
+
+@{
+    ViewData["Title"] = "Edit Job";
+}
+
+<h2>Edit Job</h2>
+
+<form asp-action="Edit">
+
+    <input type="hidden" asp-for="JobId" />
+
+    <div class="mb-3">
+        <label asp-for="JobTitle"></label>
+        <input asp-for="JobTitle" class="form-control" />
+        <span asp-validation-for="JobTitle" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="JobType"></label>
+        <input asp-for="JobType" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Location"></label>
+        <input asp-for="Location" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Salary"></label>
+        <input asp-for="Salary" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="LastDateToApply"></label>
+        <input asp-for="LastDateToApply" type="date" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Company</label>
+        <select asp-for="CompanyId" asp-items="ViewBag.CompanyId" class="form-select"></select>
+    </div>
+
+    <div class="mb-3">
+        <label>Category</label>
+        <select asp-for="CategoryId" asp-items="ViewBag.CategoryId" class="form-select"></select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Update</button>
+
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

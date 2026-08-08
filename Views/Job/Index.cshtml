@@ -1,0 +1,182 @@
+﻿@model IEnumerable<CareerConnect.Models.Job>
+
+@{
+    ViewData["Title"] = "Jobs";
+}
+
+@if (ViewBag.Category != null)
+{
+    <h2 class="mb-4">
+        <i class="bi bi-briefcase-fill text-primary"></i>
+        @ViewBag.Category Jobs
+    </h2>
+}
+else
+{
+    <h2 class="mb-4">
+        <i class="bi bi-briefcase-fill text-primary"></i>
+        All Jobs
+    </h2>
+}
+<form asp-action="Index" method="get" class="row g-3 mb-4">
+
+    <!-- Search -->
+    <div class="col-md-3">
+
+        <input type="text"
+               name="searchString"
+               value="@ViewBag.SearchString"
+               class="form-control"
+               placeholder="🔍 Job Title" />
+
+    </div>
+
+    <!-- Location -->
+    <div class="col-md-2">
+
+        <input type="text"
+               name="location"
+               value="@ViewBag.Location"
+               class="form-control"
+               placeholder="📍 Location" />
+
+    </div>
+
+    <!-- Category -->
+    <div class="col-md-3">
+
+        <select name="categoryId"
+                asp-items="ViewBag.CategoryList"
+                class="form-select">
+
+            <option value="">All Categories</option>
+
+
+
+        </select>
+
+    </div>
+
+    <!-- Job Type -->
+    <div class="col-md-2">
+
+        <select name="jobType"
+                class="form-select">
+
+            <option value="">All Types</option>
+
+            <option value="Full Time">Full Time</option>
+
+            <option value="Part Time">Part Time</option>
+
+            <option value="Remote">Remote</option>
+
+            <option value="Hybrid">Hybrid</option>
+
+        </select>
+
+    </div>
+
+    <!-- Filter Button -->
+    <div class="col-md-2">
+
+        <button type="submit"
+                class="btn btn-success w-100">
+
+            <i class="bi bi-funnel-fill"></i>
+
+            Filter
+
+        </button>
+
+    </div>
+
+</form>
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <a asp-action="Create"
+       class="btn btn-primary">
+
+        <i class="bi bi-plus-circle-fill"></i>
+
+        Add New Job
+
+    </a>
+
+    <a asp-action="Index"
+       class="btn btn-outline-dark">
+
+        <i class="bi bi-arrow-repeat"></i>
+
+        Reset Filters
+
+    </a>
+
+</div>
+<table class="table table-bordered table-striped">
+
+    <thead class="table-dark">
+
+        <tr>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Category</th>
+            <th>Location</th>
+            <th>Salary</th>
+            <th>Last Date</th>
+            <th width="250">Action</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.JobTitle</td>
+
+                <td>@item.Company?.CompanyName</td>
+
+                <td>@item.Category?.CategoryName</td>
+
+                <td>@item.Location</td>
+
+                <td>₹ @item.Salary</td>
+
+                <td>@item.LastDateToApply.ToShortDateString()</td>
+                <td>
+
+                    <a asp-action="Edit"
+                       asp-route-id="@item.JobId"
+                       class="btn btn-warning btn-sm">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+
+                    <a asp-action="Details"
+                       asp-route-id="@item.JobId"
+                       class="btn btn-info btn-sm">
+                        <i class="bi bi-eye"></i>
+                    </a>
+
+                    <a asp-controller="Application"
+                       asp-action="Applicants"
+                       asp-route-jobId="@item.JobId"
+                       class="btn btn-success btn-sm">
+                        <i class="bi bi-people-fill"></i>
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@item.JobId"
+                       class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash"></i>
+                    </a>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

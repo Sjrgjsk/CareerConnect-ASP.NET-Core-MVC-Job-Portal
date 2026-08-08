@@ -1,0 +1,45 @@
+﻿@model CareerConnect.Models.Job
+
+@{
+    ViewData["Title"] = "Delete Job";
+}
+
+<h2>Delete Job</h2>
+
+<div class="alert alert-danger">
+    Are you sure you want to delete this job?
+</div>
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>Job Title</th>
+        <td>@Model.JobTitle</td>
+    </tr>
+
+    <tr>
+        <th>Company</th>
+        <td>@Model.Company?.CompanyName</td>
+    </tr>
+
+    <tr>
+        <th>Category</th>
+        <td>@Model.Category?.CategoryName</td>
+    </tr>
+
+</table>
+
+<form asp-action="Delete">
+
+    <input type="hidden" asp-for="JobId" />
+
+    <button type="submit" class="btn btn-danger">
+        Delete
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>

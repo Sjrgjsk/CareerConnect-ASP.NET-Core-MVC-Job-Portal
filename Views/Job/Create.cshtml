@@ -1,1 +1,73 @@
+﻿@model CareerConnect.Models.Job
 
+@{
+    ViewData["Title"] = "Add Job";
+}
+
+<h2>Add New Job</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label asp-for="JobTitle" class="form-label"></label>
+        <input asp-for="JobTitle" class="form-control" />
+        <span asp-validation-for="JobTitle" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="JobType" class="form-label"></label>
+        <input asp-for="JobType" class="form-control" />
+        <span asp-validation-for="JobType" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Location" class="form-label"></label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Salary" class="form-label"></label>
+        <input asp-for="Salary" class="form-control" />
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="LastDateToApply" class="form-label"></label>
+        <input asp-for="LastDateToApply" type="date" class="form-control" />
+        <span asp-validation-for="LastDateToApply" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Company</label>
+        <select asp-for="CompanyId" asp-items="ViewBag.CompanyId" class="form-select">
+            <option value="">-- Select Company --</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Category</label>
+        <select asp-for="CategoryId" asp-items="ViewBag.CategoryId" class="form-select">
+            <option value="">-- Select Category --</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Save Job
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
