@@ -1,0 +1,57 @@
+﻿@model IEnumerable<CareerConnect.Models.Feedback>
+
+@{
+    ViewData["Title"] = "Feedback";
+}
+
+<h2>User Feedback</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">
+        Give Feedback
+    </a>
+</p>
+
+<table class="table table-bordered table-striped">
+
+    <thead class="table-dark">
+        <tr>
+            <th>Subject</th>
+            <th>User</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.Subject</td>
+
+                <td>@item.User?.FullName</td>
+
+                <td>@item.FeedbackDate.ToShortDateString()</td>
+
+                <td>
+                    <a asp-action="Details"
+                       asp-route-id="@item.FeedbackId"
+                       class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@item.FeedbackId"
+                       class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>
