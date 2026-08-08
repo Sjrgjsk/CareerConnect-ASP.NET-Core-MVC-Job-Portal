@@ -1,0 +1,473 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+@model List<CareerConnect.Models.Job>
+<!-- ================= HERO SECTION ================= -->
+
+<section class="py-5 text-center text-white"
+         style="background:linear-gradient(135deg,#0d6efd,#3b82f6);">
+
+    <div class="container">
+
+        <h1 class="display-3 fw-bold mb-3">
+
+            Find Your Dream Job
+
+        </h1>
+
+        <p class="lead mb-4">
+
+            Connect with top companies and explore thousands of opportunities across India.
+
+        </p>
+
+        <a asp-controller="Job"
+           asp-action="Index"
+           class="btn btn-warning btn-lg me-3">
+
+            <i class="bi bi-search"></i>
+
+            Browse Jobs
+
+        </a>
+
+        <a asp-controller="Account"
+           asp-action="Register"
+           class="btn btn-outline-light btn-lg">
+
+            <i class="bi bi-person-plus-fill"></i>
+
+            Register
+
+        </a>
+
+    </div>
+
+</section>
+
+<!-- ================= SEARCH SECTION ================= -->
+
+<div class="container mt-5">
+
+    <div class="card border-0 shadow-lg rounded-4">
+
+        <div class="card-body p-4">
+
+            <h3 class="text-center mb-4 fw-bold">
+
+                <i class="bi bi-search text-primary"></i>
+
+                Search Jobs
+
+            </h3>
+
+            <form asp-controller="Job"
+                  asp-action="Index"
+                  method="get">
+
+                <div class="row g-3">
+
+                    <div class="col-lg-5">
+
+                        <input type="text"
+                               name="searchString"
+                               class="form-control form-control-lg rounded-pill"
+                               placeholder="🔍 Job Title" />
+
+                    </div>
+
+                    <div class="col-lg-5">
+
+                        <input type="text"
+                               name="location"
+                               class="form-control form-control-lg rounded-pill"
+                               placeholder="📍 Location" />
+
+                    </div>
+
+                    <div class="col-lg-2">
+
+                        <button type="submit"
+                                class="btn btn-primary btn-lg rounded-pill w-100">
+
+                            <i class="bi bi-search"></i>
+                            Search
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= POPULAR CATEGORIES ================= -->
+
+<div class="container py-5">
+
+    <h2 class="text-center fw-bold mb-5">
+
+        <i class="bi bi-grid-fill text-primary"></i>
+
+        Popular Categories
+
+    </h2>
+
+    <div class="row g-4">
+
+        <!-- Software -->
+
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 rounded-4 h-100 text-center">
+
+                <div class="card-body">
+
+                    <i class="bi bi-laptop display-4 text-primary"></i>
+
+                    <h5 class="mt-3 fw-bold">
+
+                        Software Development
+
+                    </h5>
+
+                    
+                    <a asp-controller="Job"
+                       asp-action="Index"
+                       asp-route-category="Software Development"
+                       class="btn btn-outline-primary rounded-pill">
+
+                            View Jobs
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Marketing -->
+
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 rounded-4 h-100 text-center">
+
+                <div class="card-body">
+
+                    <i class="bi bi-bar-chart-line display-4 text-success"></i>
+
+                    <h5 class="mt-3 fw-bold">
+
+                        Marketing
+
+                    </h5>
+
+                    
+
+                    <a asp-controller="Job"
+   asp-action="Index"
+   asp-route-category="Marketing"
+   class="btn btn-outline-success rounded-pill">
+
+    View Jobs
+
+</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Finance -->
+
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 rounded-4 h-100 text-center">
+
+                <div class="card-body">
+
+                    <i class="bi bi-bank display-4 text-warning"></i>
+
+                    <h5 class="mt-3 fw-bold">
+
+                        Finance
+
+                    </h5>
+
+                    
+                    <a asp-controller="Job"
+                       asp-action="Index"
+                       asp-route-category="Finance"
+                       class="btn btn-outline-warning rounded-pill">
+
+                        View Jobs
+
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- HR -->
+
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 rounded-4 h-100 text-center">
+
+                <div class="card-body">
+
+                    <i class="bi bi-people-fill display-4 text-danger"></i>
+
+                    <h5 class="mt-3 fw-bold">
+
+                        Human Resources
+
+                    </h5>
+
+                   
+
+                    <a asp-controller="Job"
+                       asp-action="Index"
+                       asp-route-category="Human Resources"
+                       class="btn btn-outline-danger rounded-pill">
+
+                        View Jobs
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= LATEST JOBS ================= -->
+
+<div class="container py-5">
+
+    <h2 class="text-center fw-bold mb-5">
+
+        <i class="bi bi-briefcase-fill text-primary"></i>
+
+        Latest Jobs
+
+    </h2>
+
+    <div class="row g-4">
+
+        @foreach (var job in Model)
+        {
+            <div class="col-lg-4">
+
+                <div class="card border-0 shadow-lg rounded-4 h-100">
+
+                    <div class="card-body">
+
+                        <h4 class="fw-bold">
+
+                            @job.JobTitle
+
+                        </h4>
+
+                        <p>
+
+                            <i class="bi bi-buildings text-primary"></i>
+
+                            @job.Company?.CompanyName
+
+                        </p>
+
+                        <p>
+
+                            <i class="bi bi-geo-alt-fill text-danger"></i>
+
+                            @job.Location
+
+                        </p>
+
+                        <p>
+
+                            <i class="bi bi-currency-rupee text-success"></i>
+
+                            ₹@job.Salary
+
+                        </p>
+
+                        <span class="badge bg-success mb-3">
+
+                            @job.JobType
+
+                        </span>
+
+                        <br />
+
+                        <a asp-controller="Application"
+                           asp-action="Create"
+                           asp-route-jobId="@job.JobId"
+                           class="btn btn-success rounded-pill w-100">
+
+                            <i class="bi bi-send-fill"></i>
+                            Apply Now
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</div>
+<!-- ================= WHY CHOOSE US ================= -->
+
+<section class="container py-5">
+
+    <h2 class="text-center fw-bold mb-5">
+
+        <i class="bi bi-stars text-warning"></i>
+
+        Why Choose CareerConnect?
+
+    </h2>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow rounded-4 h-100 text-center">
+
+                <div class="card-body">
+
+                    <i class="bi bi-patch-check-fill display-4 text-success"></i>
+
+                    <h5 class="mt-3">Verified Companies</h5>
+
+                    <p class="text-muted">
+
+                        Apply only to trusted recruiters.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow rounded-4 h-100 text-center">
+
+                <div class="card-body">
+
+                    <i class="bi bi-lightning-charge-fill display-4 text-warning"></i>
+
+                    <h5 class="mt-3">Easy Apply</h5>
+
+                    <p class="text-muted">
+
+                        Apply for jobs with a single click.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow rounded-4 h-100 text-center">
+
+                <div class="card-body">
+
+                    <i class="bi bi-file-earmark-person-fill display-4 text-primary"></i>
+
+                    <h5 class="mt-3">Resume Upload</h5>
+
+                    <p class="text-muted">
+
+                        Upload and manage your professional resume.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow rounded-4 h-100 text-center">
+
+                <div class="card-body">
+
+                    <i class="bi bi-shield-lock-fill display-4 text-danger"></i>
+
+                    <h5 class="mt-3">Secure Platform</h5>
+
+                    <p class="text-muted">
+
+                        Secure login with role-based access control.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ================= CALL TO ACTION ================= -->
+=
+<section class="py-5 text-center text-white"
+         style="background:linear-gradient(90deg,#0d6efd,#3b82f6);">
+
+    <div class="container">
+
+        <h2 class="fw-bold">
+
+            Ready to Build Your Career?
+
+        </h2>
+
+        <p class="lead">
+
+            Join CareerConnect today and explore thousands of job opportunities.
+
+        </p>
+
+        <a asp-controller="Account"
+           asp-action="Register"
+           class="btn btn-warning btn-lg">
+
+            <i class="bi bi-person-plus-fill"></i>
+
+            Register Now
+
+        </a>
+
+    </div>
+
+</section>
