@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Job Seeker Dashboard";
+}
+
+<h2 class="text-primary mb-4">
+    Job Seeker Dashboard
+</h2>
+
+<div class="row">
+
+    <div class="col-md-3 mb-3">
+        <div class="card bg-primary text-white shadow">
+            <div class="card-body">
+                <h5>Profile</h5>
+                <h2>@ViewBag.ProfileCount</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="card bg-success text-white shadow">
+            <div class="card-body">
+                <h5>Resume</h5>
+                <h2>@ViewBag.ResumeCount</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="card bg-warning text-dark shadow">
+            <div class="card-body">
+                <h5>Applications</h5>
+                <h2>@ViewBag.ApplicationCount</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="card bg-info text-white shadow">
+            <div class="card-body">
+                <h5>Saved Jobs</h5>
+                <h2>@ViewBag.SavedJobCount</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<hr />
+
+<h4>Quick Actions</h4>
+
+<div class="mt-3">
+
+    <a asp-controller="Profile"
+       asp-action="Index"
+       class="btn btn-primary">
+        My Profile
+    </a>
+
+    <a asp-controller="Resume"
+       asp-action="Index"
+       class="btn btn-success">
+        My Resume
+    </a>
+
+    <a asp-controller="Application"
+       asp-action="Index"
+       class="btn btn-warning">
+        My Applications
+    </a>
+
+    <a asp-controller="SavedJob"
+       asp-action="Index"
+       class="btn btn-info text-white">
+        Saved Jobs
+    </a>
+
+    <a asp-controller="Job"
+       asp-action="Index"
+       class="btn btn-secondary">
+        Search Jobs
+    </a>
+
+</div>
