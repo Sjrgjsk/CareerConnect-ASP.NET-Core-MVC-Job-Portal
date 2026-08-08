@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CareerConnect.Models.Application>
+
+@{
+    ViewData["Title"] = "Applications";
+}
+
+<h2>Applications</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">
+        Apply for Job
+    </a>
+</p>
+
+<table class="table table-bordered">
+
+    <thead class="table-dark">
+        <tr>
+            <th>Job</th>
+            <th>User</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th width="220">Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.Job?.JobTitle</td>
+
+                <td>@item.User?.FullName</td>
+
+                <td>@item.ApplicationDate.ToShortDateString()</td>
+
+                <td>@item.Status</td>
+
+                <td>
+
+                    <a asp-action="Details"
+                       asp-route-id="@item.ApplicationId"
+                       class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@item.ApplicationId"
+                       class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

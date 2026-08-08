@@ -1,1 +1,67 @@
+﻿@model CareerConnect.Models.Application
 
+@{
+    ViewData["Title"] = "Apply for Job";
+}
+
+<h2 class="text-primary mb-4">
+    <i class="bi bi-briefcase"></i>
+    Apply for Job
+</h2>
+
+<form asp-action="Create" method="post">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="card shadow p-4">
+
+        <div class="mb-3">
+            <label asp-for="JobId" class="form-label"></label>
+
+            <select asp-for="JobId"
+                    asp-items="ViewBag.JobId"
+                    class="form-select">
+
+                <option value="">-- Select Job --</option>
+
+            </select>
+
+            <span asp-validation-for="JobId" class="text-danger"></span>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label asp-for="CoverLetter" class="form-label"></label>
+
+            <textarea asp-for="CoverLetter"
+                      class="form-control"
+                      rows="6"></textarea>
+
+            <span asp-validation-for="CoverLetter"
+                  class="text-danger"></span>
+
+        </div>
+
+        <div class="mt-3">
+
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-send"></i>
+                Apply
+            </button>
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+                Back
+            </a>
+
+        </div>
+
+    </div>
+
+</form>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

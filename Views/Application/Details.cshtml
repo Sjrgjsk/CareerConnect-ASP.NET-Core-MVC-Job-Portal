@@ -1,0 +1,40 @@
+﻿@model CareerConnect.Models.Application
+
+@{
+    ViewData["Title"] = "Application Details";
+}
+
+<h2>Application Details</h2>
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>Job</th>
+        <td>@Model.Job?.JobTitle</td>
+    </tr>
+
+    <tr>
+        <th>User</th>
+        <td>@Model.User?.FullName</td>
+    </tr>
+
+    <tr>
+        <th>Status</th>
+        <td>@Model.Status</td>
+    </tr>
+
+    <tr>
+        <th>Applied On</th>
+        <td>@Model.ApplicationDate.ToShortDateString()</td>
+    </tr>
+
+    <tr>
+        <th>Cover Letter</th>
+        <td>@Model.CoverLetter</td>
+    </tr>
+
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">
+    Back
+</a>

@@ -1,0 +1,98 @@
+﻿@model IEnumerable<CareerConnect.Models.Application>
+
+@{
+    ViewData["Title"] = "Job Applicants";
+}
+
+<h2 class="text-primary mb-4">
+    <i class="bi bi-people-fill"></i>
+    Job Applicants
+</h2>
+
+<table class="table table-bordered table-hover">
+
+    <thead class="table-dark">
+        <tr>
+            <th>Applicant</th>
+            <th>Email</th>
+            <th>Job</th>
+            <th>Status</th>
+            <th>Applied On</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.User?.FullName</td>
+
+                <td>@item.User?.Email</td>
+
+                <td>@item.Job?.JobTitle</td>
+
+                <td>
+                    @if (item.Status == "Pending")
+                    {
+                        <span class="badge bg-warning text-dark">Pending</span>
+                    }
+                    else if (item.Status == "Accepted")
+                    {
+                        <span class="badge bg-success">Accepted</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Rejected</span>
+                    }
+                </td>
+
+                <td>
+                    @item.ApplicationDate.ToString("dd/MM/yyyy")
+                </td>
+
+                <td>
+
+                    <a asp-action="Accept"
+                       asp-route-id="@item.ApplicationId"
+                       class="btn btn-success btn-sm">
+                        Accept
+                    </a>
+
+                    <a asp-action="Reject"
+                       asp-route-id="@item.ApplicationId"
+                       class="btn btn-warning btn-sm">
+                        Reject
+                    </a>
+
+                    <a asp-action="Details"
+                       asp-route-id="@item.ApplicationId"
+                       class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    <a asp-controller="Resume"
+                       asp-action="ViewResume"
+                       asp-route-userId="@item.UserId"
+                       target="_blank"
+                       class="btn btn-primary btn-sm">
+                        <i class="bi bi-file-earmark-pdf"></i>
+                        View Resume
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+<a asp-controller="Job"
+   asp-action="Index"
+   class="btn btn-secondary">
+    Back to Jobs
+</a>
