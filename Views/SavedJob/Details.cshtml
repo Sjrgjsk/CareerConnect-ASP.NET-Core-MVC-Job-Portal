@@ -1,0 +1,30 @@
+﻿@model CareerConnect.Models.SavedJob
+
+@{
+    ViewData["Title"] = "Saved Job Details";
+}
+
+<h2>Saved Job Details</h2>
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>Job</th>
+        <td>@Model.Job?.JobTitle</td>
+    </tr>
+
+    <tr>
+        <th>User</th>
+        <td>@Model.User?.FullName</td>
+    </tr>
+
+    <tr>
+        <th>Saved Date</th>
+        <td>@Model.SavedDate.ToShortDateString()</td>
+    </tr>
+
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">
+    Back
+</a>

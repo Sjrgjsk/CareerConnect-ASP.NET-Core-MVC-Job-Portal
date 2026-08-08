@@ -1,1 +1,55 @@
+﻿@model CareerConnect.Models.SavedJob
 
+@{
+    ViewData["Title"] = "Save Job";
+}
+
+<h2 class="text-primary mb-4">
+    Save Job
+</h2>
+
+<form asp-action="Create" method="post">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="card shadow p-4">
+
+        <div class="mb-3">
+
+            <label asp-for="JobId" class="form-label"></label>
+
+            <select asp-for="JobId"
+                    asp-items="ViewBag.JobId"
+                    class="form-select">
+
+                <option value="">-- Select Job --</option>
+
+            </select>
+
+            <span asp-validation-for="JobId"
+                  class="text-danger"></span>
+
+        </div>
+
+        <button type="submit"
+                class="btn btn-success">
+
+            Save Job
+
+        </button>
+
+        <a asp-action="Index"
+           class="btn btn-secondary mt-2">
+
+            Back
+
+        </a>
+
+    </div>
+
+</form>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
