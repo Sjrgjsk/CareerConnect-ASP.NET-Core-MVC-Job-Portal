@@ -1,1 +1,302 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
 
+<div class="container mt-4">
+
+    <h2 class="mb-4 text-primary">
+        <i class="bi bi-speedometer2"></i>
+        Admin Dashboard
+    </h2>
+
+    <!-- Statistics Cards -->
+
+    <div class="row">
+
+        <div class="col-md-3 mb-4">
+            <div class="card bg-primary text-white shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-people-fill display-5"></i>
+                    <h5 class="mt-2">Total Users</h5>
+                    <h2>@ViewBag.TotalUsers</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card bg-success text-white shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-buildings display-5"></i>
+                    <h5 class="mt-2">Companies</h5>
+                    <h2>@ViewBag.TotalCompanies</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card bg-warning text-dark shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-grid-fill display-5"></i>
+                    <h5 class="mt-2">Categories</h5>
+                    <h2>@ViewBag.TotalCategories</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card bg-info text-white shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-briefcase-fill display-5"></i>
+                    <h5 class="mt-2">Jobs</h5>
+                    <h2>@ViewBag.TotalJobs</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4 mb-4">
+            <div class="card bg-danger text-white shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-file-earmark-text-fill display-5"></i>
+                    <h5 class="mt-2">Applications</h5>
+                    <h2>@ViewBag.TotalApplications</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card bg-secondary text-white shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-file-earmark-person-fill display-5"></i>
+                    <h5 class="mt-2">Resumes</h5>
+                    <h2>@ViewBag.TotalResumes</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card bg-dark text-white shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-chat-left-text-fill display-5"></i>
+                    <h5 class="mt-2">Feedbacks</h5>
+                    <h2>@ViewBag.TotalFeedbacks</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr />
+
+    <!-- Quick Actions -->
+
+    <h4 class="mb-3">
+        <i class="bi bi-lightning-fill text-warning"></i>
+        Quick Actions
+    </h4>
+
+    <div class="mb-5">
+
+        <a asp-controller="Job"
+           asp-action="Create"
+           class="btn btn-primary me-2">
+            <i class="bi bi-plus-circle"></i>
+            Add Job
+        </a>
+
+        <a asp-controller="Company"
+           asp-action="Create"
+           class="btn btn-success me-2">
+            <i class="bi bi-buildings"></i>
+            Add Company
+        </a>
+
+        <a asp-controller="Category"
+           asp-action="Create"
+           class="btn btn-warning me-2">
+            <i class="bi bi-grid-fill"></i>
+            Add Category
+        </a>
+
+        <a asp-controller="Feedback"
+           asp-action="Index"
+           class="btn btn-info">
+            <i class="bi bi-chat-left-text"></i>
+            View Feedback
+        </a>
+
+    </div>
+
+    <hr />
+
+    <!-- Recent Jobs -->
+
+    <h4 class="mb-3">
+        <i class="bi bi-clock-history text-primary"></i>
+        Recent Jobs
+    </h4>
+
+    <table class="table table-bordered table-hover shadow">
+
+        <thead class="table-primary">
+
+            <tr>
+                <th>Job Title</th>
+                <th>Company</th>
+                <th>Location</th>
+                <th>Posted Date</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (var job in ViewBag.RecentJobs)
+            {
+                <tr>
+
+                    <td>@job.JobTitle</td>
+
+                    <td>@job.Company?.CompanyName</td>
+
+                    <td>@job.Location</td>
+
+                    <td>@job.PostedDate.ToShortDateString()</td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+    <hr />
+
+    <!-- Charts -->
+
+    <h4 class="mb-4">
+
+        <i class="bi bi-bar-chart-fill text-primary"></i>
+
+        Dashboard Analytics
+
+    </h4>
+
+    <div class="row">
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-primary text-white">
+
+                    Jobs by Category
+
+                </div>
+
+                <div class="card-body">
+
+                    <canvas id="jobsChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-success text-white">
+
+                    Application Status
+
+                </div>
+
+                <div class="card-body">
+
+                    <canvas id="applicationChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+
+    <script>
+
+        var categoryNames = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.CategoryNames));
+
+        var categoryCounts = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.CategoryCounts));
+
+        new Chart(document.getElementById("jobsChart"), {
+
+            type: 'bar',
+
+            data: {
+
+                labels: categoryNames,
+
+                datasets: [{
+
+                    label: 'Jobs',
+
+                    data: categoryCounts,
+
+                    backgroundColor: '#ff80bf'
+
+                }]
+
+            }
+
+        });
+
+        new Chart(document.getElementById("applicationChart"), {
+
+            type: 'pie',
+
+            data: {
+
+                labels: ['Pending', 'Accepted', 'Rejected'],
+
+                datasets: [{
+
+                    data: [
+
+                        @ViewBag.Pending,
+
+                        @ViewBag.Accepted,
+
+                        @ViewBag.Rejected
+
+                    ],
+
+                    backgroundColor: [
+
+                        '#ffc107',
+
+                        '#28a745',
+
+                        '#dc3545'
+
+                    ]
+
+                }]
+
+            }
+
+        });
+
+    </script>
+
+}
