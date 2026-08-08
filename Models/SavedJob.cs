@@ -3,20 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CareerConnect.Models
 {
-    public class Application
+    public class SavedJob
     {
         [Key]
-        public int ApplicationId { get; set; }
+        public int SavedJobId { get; set; }
 
-        [Required]
-        public DateTime ApplicationDate { get; set; } = DateTime.Now;
-
-        [Required]
-        [StringLength(50)]
-        public string Status { get; set; } = "Pending";
-
-        [StringLength(500)]
-        public string? CoverLetter { get; set; }
+        public DateTime SavedDate { get; set; } = DateTime.Now;
 
         // Foreign Key for Job
         [Required]
