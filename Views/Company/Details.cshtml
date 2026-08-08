@@ -1,0 +1,44 @@
+﻿@model CareerConnect.Models.Company
+
+@{
+    ViewData["Title"] = "Company Details";
+}
+
+<h2>Company Details</h2>
+
+<div class="card">
+    <div class="card-body">
+
+        <dl class="row">
+
+            <dt class="col-sm-3">Company Name</dt>
+            <dd class="col-sm-9">@Model.CompanyName</dd>
+
+            <dt class="col-sm-3">Email</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+
+            <dt class="col-sm-3">Phone Number</dt>
+            <dd class="col-sm-9">@Model.PhoneNumber</dd>
+
+            <dt class="col-sm-3">Website</dt>
+            <dd class="col-sm-9">@Model.Website</dd>
+
+            <dt class="col-sm-3">Address</dt>
+            <dd class="col-sm-9">@Model.Address</dd>
+
+
+            <dt class="col-sm-3">Description</dt>
+            <dd class="col-sm-9">@Model.Description</dd>
+
+        </dl>
+
+        <a asp-action="Edit" asp-route-id="@Model.CompanyId" class="btn btn-warning">
+            Edit
+        </a>
+
+        <a asp-action="Index" class="btn btn-secondary">
+            Back to List
+        </a>
+
+    </div>
+</div>

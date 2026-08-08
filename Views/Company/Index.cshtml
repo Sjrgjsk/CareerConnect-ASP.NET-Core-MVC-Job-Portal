@@ -1,0 +1,70 @@
+﻿@model IEnumerable<CareerConnect.Models.Company>
+
+@{
+    ViewData["Title"] = "Companies";
+}
+
+<h2>Companies</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">
+    Add Company
+</a>
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+
+            <th>Name</th>
+
+            <th>Email</th>
+
+            <th>Phone</th>
+
+            <th>Website</th>
+
+            <th>Address</th>
+
+            <th>Action</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+@foreach(var item in Model)
+{
+    <tr>
+
+        <td>@item.CompanyName</td>
+
+        <td>@item.Email</td>
+
+        <td>@item.PhoneNumber</td>
+
+        <td>@item.Website</td>
+
+        <td>@item.Address</td>
+
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.CompanyId" class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    <a asp-action="Edit" asp-route-id="@item.CompanyId" class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a asp-action="Delete" asp-route-id="@item.CompanyId" class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+                </td>
+
+    </tr>
+}
+
+    </tbody>
+
+</table>
