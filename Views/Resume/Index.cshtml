@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CareerConnect.Models.Resume>
+
+@{
+    ViewData["Title"] = "Resume List";
+}
+
+<h2>Resume List</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">
+        Upload Resume
+    </a>
+</p>
+
+<table class="table table-bordered">
+
+    <thead class="table-dark">
+        <tr>
+            <th>Title</th>
+            <th>Resume File</th>
+            <th>User</th>
+            <th>Upload Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.ResumeTitle</td>
+
+                <td>@item.ResumeFile</td>
+
+                <td>@item.User?.FullName</td>
+
+                <td>@item.UploadDate.ToShortDateString()</td>
+
+                <td>
+
+                    <a asp-action="Details"
+                       asp-route-id="@item.ResumeId"
+                       class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@item.ResumeId"
+                       class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

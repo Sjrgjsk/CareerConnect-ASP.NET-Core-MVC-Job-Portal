@@ -1,0 +1,35 @@
+﻿@model CareerConnect.Models.Resume
+
+@{
+    ViewData["Title"] = "Resume Details";
+}
+
+<h2>Resume Details</h2>
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>Resume Title</th>
+        <td>@Model.ResumeTitle</td>
+    </tr>
+
+    <tr>
+        <th>Resume File</th>
+        <td>@Model.ResumeFile</td>
+    </tr>
+
+    <tr>
+        <th>User</th>
+        <td>@Model.User?.FullName</td>
+    </tr>
+
+    <tr>
+        <th>Upload Date</th>
+        <td>@Model.UploadDate.ToShortDateString()</td>
+    </tr>
+
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">
+    Back
+</a>
