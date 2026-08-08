@@ -2,7 +2,7 @@
 
 namespace CareerConnect.Interfaces
 {
-    public interface IApplicationRepository
+    public interface IApplicationService
     {
         Task<List<Application>> GetAllApplicationsAsync();
         Task<Application?> GetApplicationByIdAsync(int id);
