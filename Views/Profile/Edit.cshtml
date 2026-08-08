@@ -1,0 +1,109 @@
+﻿@model CareerConnect.Models.Profile
+
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+
+<h2 class="text-primary mb-4">
+    <i class="bi bi-person-circle"></i>
+    Edit Profile
+</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+
+    <input type="hidden" asp-for="ProfileId" />
+    <input type="hidden" asp-for="UserId" />
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="card shadow p-4">
+
+        <div class="mb-3">
+            <label asp-for="FullName" class="form-label"></label>
+            <input asp-for="FullName" class="form-control" />
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="MobileNumber" class="form-label"></label>
+            <input asp-for="MobileNumber" class="form-control" />
+            <span asp-validation-for="MobileNumber" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Qualification" class="form-label"></label>
+            <input asp-for="Qualification" class="form-control" />
+            <span asp-validation-for="Qualification" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Skills" class="form-label"></label>
+            <textarea asp-for="Skills" class="form-control"></textarea>
+            <span asp-validation-for="Skills" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Experience" class="form-label"></label>
+            <input asp-for="Experience" class="form-control" />
+            <span asp-validation-for="Experience" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="City" class="form-label"></label>
+            <input asp-for="City" class="form-control" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="State" class="form-label"></label>
+            <input asp-for="State" class="form-control" />
+            <span asp-validation-for="State" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="AboutMe" class="form-label"></label>
+            <textarea asp-for="AboutMe" class="form-control"></textarea>
+            <span asp-validation-for="AboutMe" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Profile Image</label>
+
+            <input type="file"
+                   name="ProfilePhoto"
+                   class="form-control" />
+
+            @if (!string.IsNullOrEmpty(Model.ProfileImage))
+            {
+                <div class="mt-3">
+                    <img src="~/@Model.ProfileImage"
+                         width="150"
+                         class="img-thumbnail" />
+                </div>
+            }
+        </div>
+
+        <div class="mt-3">
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-check-circle"></i>
+                Save Changes
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary">
+                Cancel
+            </a>
+        </div>
+
+    </div>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,1 +1,76 @@
+﻿@model CareerConnect.Models.Profile
 
+@{
+    ViewData["Title"] = "Create Profile";
+}
+
+<h2 class="text-primary mb-4">
+    <i class="bi bi-person-circle"></i>
+    Create Your Profile
+</h2>
+
+<form asp-action="Create" method="post">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="card shadow p-4">
+
+    <div class="mb-3">
+        <label asp-for="FullName"></label>
+        <input asp-for="FullName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MobileNumber"></label>
+        <input asp-for="MobileNumber" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Qualification"></label>
+        <input asp-for="Qualification" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Skills"></label>
+        <input asp-for="Skills" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Experience"></label>
+        <input asp-for="Experience" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="City"></label>
+        <input asp-for="City" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="State"></label>
+        <input asp-for="State" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="AboutMe"></label>
+        <textarea asp-for="AboutMe" class="form-control"></textarea>
+    </div>
+
+        <div class="mt-3">
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-check-circle"></i>
+                Save Profile
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary">
+                Back
+            </a>
+        </div>
+
+    </div>
+
+</form>

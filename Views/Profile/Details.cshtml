@@ -1,0 +1,58 @@
+﻿@model CareerConnect.Models.Profile
+
+@{
+    ViewData["Title"] = "Profile Details";
+}
+
+<h2>Profile Details</h2>
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>Full Name</th>
+        <td>@Model.FullName</td>
+    </tr>
+
+    <tr>
+        <th>Email</th>
+        <td>@Model.Email</td>
+    </tr>
+
+    <tr>
+        <th>Mobile</th>
+        <td>@Model.MobileNumber</td>
+    </tr>
+
+    <tr>
+        <th>Qualification</th>
+        <td>@Model.Qualification</td>
+    </tr>
+
+    <tr>
+        <th>Skills</th>
+        <td>@Model.Skills</td>
+    </tr>
+
+    <tr>
+        <th>Experience</th>
+        <td>@Model.Experience</td>
+    </tr>
+
+    <tr>
+        <th>City</th>
+        <td>@Model.City</td>
+    </tr>
+
+    <tr>
+        <th>State</th>
+        <td>@Model.State</td>
+    </tr>
+
+    <tr>
+        <th>About Me</th>
+        <td>@Model.AboutMe</td>
+    </tr>
+
+</table>
+
+<a asp-action="Index" class="btn btn-primary">Back</a>
